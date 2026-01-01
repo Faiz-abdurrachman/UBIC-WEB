@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-import ubicLogo from "../assets/ubic.png";
+import ubicLogo from '../assets/ubic.png';
+
+const SOCIAL_LINKS = [
+  { label: 's.id/ubicspace', href: 'https://s.id/ubicspace' },
+  { label: '@ubic.unujogja', href: 'https://instagram.com/ubic.unujogja' },
+];
+
 export default function Footer() {
   return (
     <footer className="relative border-t-2 border-tech-black bg-background">
@@ -21,13 +27,16 @@ export default function Footer() {
                     src={ubicLogo} 
                     alt="UBIC Logo" 
                     className="w-full h-full object-contain p-1.5"
+                    loading="lazy"
                     onError={(e) => {
                       e.target.style.display = 'none';
-                      if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                      if (e.target.nextSibling) {
+                        e.target.nextSibling.style.display = 'flex';
+                      }
                     }}
                   />
                   <div className="hidden w-full h-full items-center justify-center text-sm font-heading font-bold text-primary-green">
-                    {/* U */}
+                    U
                   </div>
                 </div>
                 <div className="flex flex-col">
@@ -35,7 +44,7 @@ export default function Footer() {
                     UBIC
                   </span>
                   <span className="text-xs font-mono text-tech-black/60 font-normal leading-tight">
-                    {/* /university */}
+                    /university
                   </span>
                 </div>
               </div>
@@ -45,24 +54,21 @@ export default function Footer() {
             </div>
 
             <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6">
-              <a
-                href="https://s.id/ubicspace"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-mono text-tech-black hover:text-primary-green transition-colors group"
-              >
-                <span>s.id/ubicspace</span>
-                <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
-              </a>
-              <a
-                href="https://instagram.com/ubic.unujogja"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-mono text-tech-black hover:text-primary-green transition-colors group"
-              >
-                <span>@ubic.unujogja</span>
-                <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" strokeWidth={2} />
-              </a>
+              {SOCIAL_LINKS.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm font-mono text-tech-black hover:text-primary-green transition-colors group"
+                >
+                  <span>{link.label}</span>
+                  <ExternalLink 
+                    className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                    strokeWidth={2} 
+                  />
+                </a>
+              ))}
             </div>
           </div>
 

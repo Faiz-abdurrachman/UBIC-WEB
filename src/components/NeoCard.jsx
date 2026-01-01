@@ -1,16 +1,25 @@
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
-export default function NeoCard({ children, className = '', hoverEffect = true, borderColor = 'tech-black', onClick }) {
-  // Check if className already has bg- class, if not, add default bg-background
+const SHADOW_COLORS = {
+  gold: '#F59E0B',
+  'tech-black': '#111827',
+} as const;
+
+export default function NeoCard({ 
+  children, 
+  className = '', 
+  hoverEffect = true, 
+  borderColor = 'tech-black', 
+  onClick 
+}) {
   const hasBackground = className.includes('bg-');
   const baseClasses = `neo-card p-6 ${hasBackground ? '' : 'bg-background'}`;
   const hoverClasses = hoverEffect ? 'neo-card-hover cursor-pointer' : '';
   const borderClasses = borderColor === 'gold' ? 'border-accent-gold' : 'border-tech-black';
   
-  // Dynamic shadow based on border color
-  const shadowStyle = borderColor === 'gold' 
-    ? { boxShadow: '6px 6px 0px 0px #F59E0B' }
-    : { boxShadow: '6px 6px 0px 0px #111827' };
+  const shadowColor = SHADOW_COLORS[borderColor] || SHADOW_COLORS['tech-black'];
+  const shadowStyle = { boxShadow: `6px 6px 0px 0px ${shadowColor}` };
 
   return (
     <motion.div
@@ -25,3 +34,10 @@ export default function NeoCard({ children, className = '', hoverEffect = true, 
   );
 }
 
+NeoCard.propTypes = {
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  hoverEffect: PropTypes.bool,
+  borderColor: PropTypes.oneOf(['gold', 'tech-black']),
+  onClick: PropTypes.func,
+};

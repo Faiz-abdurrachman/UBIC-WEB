@@ -1,15 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import ubicLogo from "../assets/ubic.png";
+import ubicLogo from '../assets/ubic.png';
 
-const navItems = [
+const NAV_ITEMS = [
   { label: 'Home', href: '#home' },
   { label: 'Problem', href: '#problem' },
   { label: 'Vision', href: '#vision' },
   { label: 'Programs', href: '#programs' },
   { label: 'Partners', href: '#partners' },
 ];
+
+const SCROLL_THRESHOLD = 20;
+const NAVBAR_HEIGHT = 80;
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -18,9 +21,9 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > SCROLL_THRESHOLD);
       
-      const sections = navItems.map(item => item.href.substring(1));
+      const sections = NAV_ITEMS.map(item => item.href.substring(1));
       const scrollPosition = window.scrollY + 100;
       
       let current = 'home';
@@ -49,9 +52,8 @@ export default function Navbar() {
     e.preventDefault();
     const element = document.querySelector(href);
     if (element) {
-      const navbarHeight = 80;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navbarHeight;
+      const offsetPosition = elementPosition - NAVBAR_HEIGHT;
 
       window.scrollTo({
         top: Math.max(0, offsetPosition),
@@ -88,28 +90,31 @@ export default function Navbar() {
                 src={ubicLogo}
                 alt="UBIC Logo" 
                 className="w-full h-full object-contain p-1"
+                loading="lazy"
                 onError={(e) => {
                   e.target.style.display = 'none';
-                  if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                  if (e.target.nextSibling) {
+                    e.target.nextSibling.style.display = 'flex';
+                  }
                 }}
               />
               <div className="hidden w-full h-full items-center justify-center text-xs font-heading font-bold text-primary-green">
-                {/* U */}
+                U
               </div>
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-heading font-bold tracking-tight text-tech-black leading-tight">
-                {/* UBIC */}
+                UBIC
               </span>
               <span className="text-xs font-mono text-tech-black/60 font-normal leading-tight">
-                {/* /university */}
+                /university
               </span>
             </div>
           </motion.a>
 
           {/* Navigation Items */}
           <div className="hidden md:flex items-center space-x-2">
-            {navItems.map((item) => {
+            {NAV_ITEMS.map((item) => {
               const isActive = activeSection === item.href.substring(1);
               return (
                 <motion.a
@@ -154,7 +159,7 @@ export default function Navbar() {
             className="md:hidden border-t-2 border-tech-black py-4 bg-background"
           >
             <div className="flex flex-col space-y-2">
-              {navItems.map((item) => {
+              {NAV_ITEMS.map((item) => {
                 const isActive = activeSection === item.href.substring(1);
                 return (
                   <a

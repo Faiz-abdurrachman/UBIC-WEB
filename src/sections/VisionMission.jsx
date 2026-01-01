@@ -4,29 +4,29 @@ import SectionHeader from '../components/SectionHeader';
 import AbstractShapes from '../components/AbstractShapes';
 import { BookOpen, Lightbulb, Network, Rocket } from 'lucide-react';
 
-const visionText = "To become a leading hub of innovation in blockchain technology and digital assets, fostering global competitiveness and impactful solutions.";
+const VISION_TEXT = 'To become a leading hub of innovation in blockchain technology and digital assets, fostering global competitiveness and impactful solutions.';
 
-const missionItems = [
+const MISSION_ITEMS = [
   {
     icon: BookOpen,
     title: 'Enhancing Knowledge',
-    description: 'Workshops and educational programs to build technical expertise'
+    description: 'Workshops and educational programs to build technical expertise',
   },
   {
     icon: Lightbulb,
     title: 'Fostering Research',
-    description: 'Creating impactful solutions through research and development'
+    description: 'Creating impactful solutions through research and development',
   },
   {
     icon: Network,
     title: 'Professional Networks',
-    description: 'Connecting students with industry leaders and opportunities'
+    description: 'Connecting students with industry leaders and opportunities',
   },
   {
     icon: Rocket,
     title: 'Entrepreneurship',
-    description: 'Supporting startup initiatives and innovative projects'
-  }
+    description: 'Supporting startup initiatives and innovative projects',
+  },
 ];
 
 export default function VisionMission() {
@@ -60,7 +60,7 @@ export default function VisionMission() {
                   VISION
                 </div>
                 <h3 className="text-3xl md:text-4xl font-heading font-bold tracking-tight text-white">
-                  {visionText}
+                  {VISION_TEXT}
                 </h3>
               </div>
             </motion.div>
@@ -81,7 +81,7 @@ export default function VisionMission() {
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {missionItems.map((item, index) => {
+              {MISSION_ITEMS.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
                   <motion.div

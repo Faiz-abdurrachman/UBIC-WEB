@@ -5,35 +5,35 @@ import SectionHeader from '../components/SectionHeader';
 import AbstractShapes from '../components/AbstractShapes';
 import { Trophy, Rocket, Users, Code2 } from 'lucide-react';
 
-const programs = [
+const PROGRAMS = [
   {
     icon: Trophy,
     title: 'UBIC Block Challenge',
     description: 'Internal competition platform for students to showcase their blockchain solutions and compete in hackathons.',
     iconColor: '#F59E0B',
-    bgColor: 'rgba(245, 158, 11, 0.1)'
+    bgColor: 'rgba(245, 158, 11, 0.1)',
   },
   {
     icon: Rocket,
     title: 'UBIC Launchpad',
     description: 'Turning innovative ideas into real blockchain projects. Support for startup initiatives and MVP development.',
     iconColor: '#006A4E',
-    bgColor: 'rgba(0, 106, 78, 0.1)'
+    bgColor: 'rgba(0, 106, 78, 0.1)',
   },
   {
     icon: Users,
     title: 'The UBIC Sync',
     description: 'Regular seminars and workshops covering Smart Contracts, NFTs, DeFi, and emerging blockchain technologies.',
     iconColor: '#111827',
-    bgColor: 'rgba(17, 24, 39, 0.1)'
+    bgColor: 'rgba(17, 24, 39, 0.1)',
   },
   {
     icon: Code2,
     title: 'UBIC Dev Camp',
     description: 'Intensive coding bootcamp for hands-on blockchain development. From fundamentals to advanced implementations.',
     iconColor: '#006A4E',
-    bgColor: 'rgba(0, 106, 78, 0.1)'
-  }
+    bgColor: 'rgba(0, 106, 78, 0.1)',
+  },
 ];
 
 export default function Programs() {
@@ -53,7 +53,7 @@ export default function Programs() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {programs.map((program, index) => {
+          {PROGRAMS.map((program, index) => {
             const IconComponent = program.icon;
             const isHovered = hoveredIndex === index;
             

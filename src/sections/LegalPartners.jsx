@@ -3,10 +3,10 @@ import NeoCard from '../components/NeoCard';
 import SectionHeader from '../components/SectionHeader';
 import { FileText, Building2 } from 'lucide-react';
 
-const partners = [
+const PARTNERS = [
   { name: 'Gimbalabs Indonesia', logo: '/placeholder-gimbalabs.svg' },
   { name: 'DevWeb3 Jogja', logo: '/placeholder-devweb3.svg' },
-  { name: 'Web3 Dog', logo: '/placeholder-web3dog.svg' }
+  { name: 'Web3 Dog', logo: '/placeholder-web3dog.svg' },
 ];
 
 export default function LegalPartners() {
@@ -72,7 +72,7 @@ export default function LegalPartners() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {partners.map((partner, index) => (
+              {PARTNERS.map((partner, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -89,9 +89,12 @@ export default function LegalPartners() {
                         src={partner.logo} 
                         alt={`${partner.name} Logo`}
                         className="w-full h-full object-contain p-4"
+                        loading="lazy"
                         onError={(e) => {
                           e.target.style.display = 'none';
-                          if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                          if (e.target.nextSibling) {
+                            e.target.nextSibling.style.display = 'flex';
+                          }
                         }}
                       />
                       <div className="hidden w-full h-full items-center justify-center bg-grid-lines">

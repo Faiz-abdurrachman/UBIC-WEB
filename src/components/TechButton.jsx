@@ -1,5 +1,15 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import PropTypes from 'prop-types';
+
+const NAVBAR_HEIGHT = 80;
+const SHADOW_COLOR = '#111827';
+
+const BUTTON_VARIANTS = {
+  primary: 'bg-primary-green text-white border-tech-black',
+  secondary: 'bg-background text-tech-black border-tech-black',
+  outline: 'bg-transparent text-tech-black border-tech-black hover:bg-tech-black hover:text-white',
+} as const;
 
 export default function TechButton({ 
   children, 
@@ -9,31 +19,25 @@ export default function TechButton({
   onClick 
 }) {
   const baseClasses = 'inline-flex items-center justify-center gap-2 px-6 py-3 font-heading font-bold text-sm uppercase tracking-tight rounded-lg border-2 transition-all duration-200';
-  
-  const variants = {
-    primary: 'bg-primary-green text-white border-tech-black',
-    secondary: 'bg-background text-tech-black border-tech-black',
-    outline: 'bg-transparent text-tech-black border-tech-black hover:bg-tech-black hover:text-white'
-  };
-
-  const buttonClasses = `${baseClasses} ${variants[variant]} ${className}`;
-  const shadowStyle = { boxShadow: '6px 6px 0px 0px #111827' };
+  const buttonClasses = `${baseClasses} ${BUTTON_VARIANTS[variant]} ${className}`;
+  const shadowStyle = { boxShadow: `6px 6px 0px 0px ${SHADOW_COLOR}` };
 
   const handleClick = (e) => {
     if (href && href.startsWith('#')) {
       e.preventDefault();
       const element = document.querySelector(href);
       if (element) {
-        const navbarHeight = 80;
         const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = elementPosition - navbarHeight;
+        const offsetPosition = elementPosition - NAVBAR_HEIGHT;
         window.scrollTo({
           top: Math.max(0, offsetPosition),
           behavior: 'smooth',
         });
       }
     }
-    if (onClick) onClick(e);
+    if (onClick) {
+      onClick(e);
+    }
   };
 
   if (href) {
@@ -66,3 +70,10 @@ export default function TechButton({
   );
 }
 
+TechButton.propTypes = {
+  children: PropTypes.node.isRequired,
+  variant: PropTypes.oneOf(['primary', 'secondary', 'outline']),
+  className: PropTypes.string,
+  href: PropTypes.string,
+  onClick: PropTypes.func,
+};

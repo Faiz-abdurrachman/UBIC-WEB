@@ -4,28 +4,28 @@ import SectionHeader from '../components/SectionHeader';
 import AbstractShapes from '../components/AbstractShapes';
 import { TrendingUp, Users, AlertTriangle } from 'lucide-react';
 
-const problemData = [
+const PROBLEM_DATA = [
   {
     icon: TrendingUp,
     stat: '400%',
     label: 'Growth in demand for Blockchain Developers',
     iconColor: '#006A4E',
-    bgColor: 'rgba(0, 106, 78, 0.1)'
+    bgColor: 'rgba(0, 106, 78, 0.1)',
   },
   {
     icon: Users,
     stat: '11M+',
     label: 'Digital Asset Users in Indonesia',
     iconColor: '#F59E0B',
-    bgColor: 'rgba(245, 158, 11, 0.1)'
+    bgColor: 'rgba(245, 158, 11, 0.1)',
   },
   {
     icon: AlertTriangle,
     stat: 'Talent Gap',
     label: 'Very few local builders',
     iconColor: '#111827',
-    bgColor: 'rgba(17, 24, 39, 0.1)'
-  }
+    bgColor: 'rgba(17, 24, 39, 0.1)',
+  },
 ];
 
 export default function Problem() {
@@ -42,7 +42,7 @@ export default function Problem() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {problemData.map((item, index) => {
+          {PROBLEM_DATA.map((item, index) => {
             const IconComponent = item.icon;
             return (
               <motion.div

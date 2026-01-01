@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 
 export default function SectionHeader({ 
   title, 
@@ -25,3 +26,8 @@ export default function SectionHeader({
   );
 }
 
+SectionHeader.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
+  className: PropTypes.string,
+};

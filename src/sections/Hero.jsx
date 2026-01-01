@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import TechButton from '../components/TechButton';
-import ubicLogo from "../assets/ubic.png";
+import ubicLogo from '../assets/ubic.png';
+
 // SVG Wireframe Block/Chain Animation Component
 function BlockChainWireframe() {
   return (
@@ -90,13 +91,16 @@ export default function Hero() {
                 src={ubicLogo} 
                 alt="UBIC Logo" 
                 className="w-full h-full object-contain p-3"
+                loading="lazy"
                 onError={(e) => {
                   e.target.style.display = 'none';
-                  if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
+                  if (e.target.nextSibling) {
+                    e.target.nextSibling.style.display = 'flex';
+                  }
                 }}
               />
               <div className="hidden w-full h-full items-center justify-center text-4xl md:text-5xl font-heading font-bold text-primary-green">
-                {/* U */}
+                U
               </div>
             </div>
           </motion.div>
